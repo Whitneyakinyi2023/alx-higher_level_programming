@@ -1,7 +1,11 @@
 #!/usr/bin/python3
 import random
 number = random.randint(-10000, 10000)
-result = number % 10
+if number < 0:
+    result = number % -10
+else:
+    result = number % 10
+
 if result == 0:
     print(f"Last digit of {number} is {result} and is 0")
 elif result < 6 and result != 0:
