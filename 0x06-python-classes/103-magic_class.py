@@ -4,7 +4,6 @@ import math
 """Importation of module"""
 
 
-
 class MagicClass:
     """Magic class allocation"""
 
@@ -15,7 +14,7 @@ class MagicClass:
 
         if type(radius) is not int and type(radius) is not float:
             raise TypeError("radius must be a number")
-        
+
         else:
             self.__radius = radius
 
@@ -28,4 +27,3 @@ class MagicClass:
             """returns circumference"""
 
             return (2 * math.pi * self.__radius)
-
