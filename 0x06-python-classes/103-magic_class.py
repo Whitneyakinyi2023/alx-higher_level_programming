@@ -1,6 +1,9 @@
 #!/usr/bin/python3
+"""Dedfinition of magic class"""
 import math
 """Importation of module"""
+
+
 
 class MagicClass:
     """Magic class allocation"""
