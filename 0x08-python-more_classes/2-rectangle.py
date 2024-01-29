@@ -30,10 +30,12 @@ class Rectangle:
             raise TypeError("height must be an integer")
         if value < 0:
             raise ValueError("height must be >= 0")
-        self.__height = value
+    self.__height = value
 
+    @property
     def area(self):
         return (self.__height * self.__width)
 
+    @property
     def perimeter(self):
         return ((self.__height * 2) + (self.__width * 2))
