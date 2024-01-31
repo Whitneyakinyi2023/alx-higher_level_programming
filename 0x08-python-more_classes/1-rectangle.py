@@ -5,16 +5,10 @@
 class Rectangle:
     """Square defined"""
     def __init__(self, width=0, height=0):
-    """
-    Class that defines properties of rectangle by: (based on 0-rectangle.py).
+        """iClass"""
 
-    Attributes:
-        width (int): width of the rectangle.
-        height (int): height of the rectangle.
-    """
-
-        self.__height = height
-        self.__width = width
+        self.height = height
+        self.width = width
 
     @property
     def width(self):
