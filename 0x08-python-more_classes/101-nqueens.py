@@ -9,7 +9,7 @@ def init_chess(n):
     """Chess board sized initialization"""
     chess = []
     [chess.append ([]) for x in range (n)]
-    [row.append(' ')] for x in range (n) for row in chess]
+    [row.append(' ') for x in range (n) for row in chess]
     return (chess)
 
 def chess_copy(chess):
@@ -23,8 +23,8 @@ def retieve_solution (board):
     solution = []
     for w in range(len(chess)):
         for y in range(len(chess)):
-            if chess [w][y] == "Q"
-            soluition.append([w, y])
+            if chess [w][y] == "Q":
+                solution.append([w, y])
     return (solution)
 
 def xout(chess, row, col):
@@ -78,7 +78,7 @@ def recursive_solve(board, row, queens, solutions):
 
     for c in range(len(board)):
         if board[row][c] == " ":
-            tmp_board = board_deepcopy(board)
+            tmp_board = chess_copy(board)
             tmp_board[row][c] = "Q"
             xout(tmp_board, row, c)
             solutions = recursive_solve(tmp_board, row + 1,
@@ -98,7 +98,7 @@ if __name__ == "__main__":
         print("N must be at least 4")
         sys.exit(1)
 
-    board = init_board(int(sys.argv[1]))
+    board = init_chess(int(sys.argv[1]))
     solutions = recursive_solve(board, 0, 0, [])
     for sol in solutions:
         print(sol)
