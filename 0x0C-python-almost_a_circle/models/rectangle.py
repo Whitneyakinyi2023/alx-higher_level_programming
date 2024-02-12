@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Rectangle class"""
 
-from models.base import Base
+from base.models import Base
 """importation"""
 
 
