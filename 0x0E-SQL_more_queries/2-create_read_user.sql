@@ -1,4 +1,4 @@
---  a script that creates the database hbtn_0d_2 and the user user_0d_2
+-- a script that creates the database hbtn_0d_2 and the user user_0d_2
 	-- if hbtn_0d_2 already exists, your script should not fail
 	-- If the user user_0d_2 already exists, your script should not fail
 
