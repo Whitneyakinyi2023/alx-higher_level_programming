@@ -15,16 +15,10 @@ if (url) {
 }
 
 // Make a GET request to the provided URL
-request(url, (error, response, body) => {
-    if (error) {
-        console.error(`Error: ${error}`);
-        return;
-    }
-
-    // Write the response body to the file
-    fs.writeFile(filePath, body, 'utf-8', (err) => {
+request(process.argv[2], function (_err, _res, body) {
+    fs.writeFile(process.argv[3], body, 'utf8', function (err) {
         if (err) {
-            console.error(`Error writing to file: ${err}`);
+            console.log(err);
         }
     });
 });
