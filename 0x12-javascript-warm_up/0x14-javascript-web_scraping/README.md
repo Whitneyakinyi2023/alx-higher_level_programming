@@ -1,0 +1,1 @@
+This directory provides a walk through of how to use JavaScript for WebScraping
