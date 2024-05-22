@@ -2,45 +2,38 @@
 
 const request = require('request');
 
-// Get the Movie ID from the command line arguments
 const movieId = process.argv[2];
 
-// Construct the URL for the API request
+if (!movieId) {
+    console.error('Error: Please provide a movie ID as the first argument.');
+    process.exit(1);
+}
+
 const url = `https://swapi-api.alx-tools.com/api/films/${movieId}`;
 
-// Make a GET request to the API to fetch the movie details
 request(url, (error, response, body) => {
     if (error) {
-        console.error(`Error: ${error}`);
-        return;
+        console.error('Error:', error.message);
+        process.exit(1);
     }
 
-    if (response.statusCode === 200) {
-        const film = JSON.parse(body);
-        const characters = film.characters;
+    const movieData = JSON.parse(body);
+    if (!movieData.title) {
+        console.error('Movie not found');
+        process.exit(1);
+    }
 
-        // Function to get character name by URL and print it
-        const getCharacterName = (characterUrl) => {
-            request(characterUrl, (charError, charResponse, charBody) => {
-                if (charError) {
-                    console.error(`Error: ${charError}`);
-                    return;
-                }
+    const characterUrls = movieData.characters;
 
-                if (charResponse.statusCode === 200) {
-                    const character = JSON.parse(charBody);
-                    console.log(character.name);
-                } else {
-                    console.error(`Failed to fetch character. Status code: ${charResponse.statusCode}`);
-                }
-            });
-        };
+    characterUrls.forEach((charUrl) => {
+        request(charUrl, (error, response, body) => {
+            if (error) {
+                console.error('Error fetching character:', error.message);
+                return; // Exit inner callback on error
+            }
 
-        // Fetch and print each character name in the order they appear
-        characters.forEach((characterUrl) => {
-            getCharacterName(characterUrl);
+            const charData = JSON.parse(body);
+            console.log(charData.name);
         });
-    } else {
-        console.error(`Failed to fetch film. Status code: ${response.statusCode}`);
-    }
+    });
 });
