@@ -1,16 +1,14 @@
-#!/usr/bin/node
 const fs = require('fs');
 
-// Check if the correct number of arguments is passed
-if (process.argv.length !== 5) {
+// Check for correct number of arguments
+if (process.argv.length !== 4) {
   console.error('Usage: node 102-concat.js fileA fileB fileC');
   process.exit(1);
 }
 
-// Extract file paths from command line arguments
-const [, , fileA, fileB, fileC] = process.argv;
+const [node, script, fileA, fileB, fileC] = process.argv;
 
-// Read content from fileA and fileB
+// Read the contents of fileA and fileB
 fs.readFile(fileA, 'utf8', (errA, dataA) => {
   if (errA) {
     console.error(`Error reading ${fileA}:`, errA);
@@ -23,16 +21,16 @@ fs.readFile(fileA, 'utf8', (errA, dataA) => {
       process.exit(1);
     }
 
-    // Concatenate the content of fileA and fileB
-    const concatenatedData = dataA.trim() + '\n' + dataB.trim();
+    // Concatenate the contents
+    const concatenatedData = dataA + dataB;
 
     // Write the concatenated data to fileC
-    fs.writeFile(fileC, concatenatedData, (errWrite) => {
-      if (errWrite) {
-        console.error(`Error writing ${fileC}:`, errWrite);
+    fs.writeFile(fileC, concatenatedData, (errWr) => {
+      if (errWr) {
+        console.error(`Error writing to ${fileC}:`, errWr);
         process.exit(1);
       }
-      console.log(`Concatenation of ${fileA} and ${fileB} saved to ${fileC}`);
+      console.log(`Content from ${fileA} and ${fileB} concatenated and written to ${fileC}`);
     });
   });
 });
