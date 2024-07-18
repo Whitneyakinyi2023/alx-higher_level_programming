@@ -3,11 +3,7 @@ const Square5 = require('./5-square');
 
 // Define a class Square that inherits from Square5
 class Square extends Square5 {
-  constructor (size) {
-    // Call the constructor of Square5 with size for both width and height
-    super(size);
-  }
-
+  // No need to define a constructor here unless adding additional functionality
   charPrint (c) {
     if (c === undefined) {
       c = 'X';
