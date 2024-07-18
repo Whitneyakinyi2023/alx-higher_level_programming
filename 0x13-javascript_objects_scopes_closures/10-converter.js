@@ -7,8 +7,14 @@ exports.converter = function (base) {
     if (number === 0) {
       return '';
     } else {
+      // Calculate remainder
+      let remainder = number % base;
+      // Convert remainder to string if greater than 9
+      if (remainder >= 10) {
+        remainder = String.fromCharCode(remainder - 10 + 'A'.charCodeAt(0));
+      }
       // Recursive case: convert the quotient and append the remainder
-      return convert(Math.floor(number / base)) + String(number % base);
+      return convert(Math.floor(number / base)) + String(remainder);
     }
   }
 
